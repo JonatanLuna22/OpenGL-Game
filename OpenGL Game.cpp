@@ -3,52 +3,19 @@
 #include <iostream>
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
+#include "Window.h"
+
+// Triangle: 
+// Mesh:
+// Material:
 
 using namespace std;
 
 void processInput(GLFWwindow*);
 
-void error_callback(int error, const char* msg) {
-    cerr << " [" << error << "] " << msg << endl;
-}
-
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-    glViewport(0, 0, width, height);
-}
-
 int main() {
-    if (!glfwInit()) {
-    std:: cout << "Failed to int GLFW" << std :: endl;
-    return -1;
-    }
-
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-
-    // Request window from Operating system
-    GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", nullptr, nullptr);
-    if (window == nullptr)
-    {
-        std::cout << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
-        return -1;
-    }
-    glfwMakeContextCurrent(window);
-
-    // Initialize GLAD (connects OpenGL Functions)
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        std::cout << "Failed to initialize GLAD" << std::endl;
-        return -1;
-    }
-
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    int width, height;
-    glfwGetFramebufferSize(window, &width, &height);
-    glViewport(0, 0, width, height);
+    
+    Window window{ 800, 600 };
     
     float red = 0;
 
@@ -159,17 +126,17 @@ int main() {
     glDeleteShader(fragmentShader2);
 
     // While the user doesn't want to quit (X button, Alt + F4)
-    while (!glfwWindowShouldClose(window))
+    while (!glfwWindowShouldClose(window.window))
     {
         // process input (e.g. close window on Esc)
         glfwPollEvents();
-        processInput(window);
+        processInput(window.window);
         red += 0.0001f;
         if (red > 1)
             red -= 1;
 
         // render (paint the current frame of the game)
-        glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
+        glClearColor(0.f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         glUseProgram(shaderProgram);
@@ -181,7 +148,7 @@ int main() {
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
         // present (send the current frame to the computer screen)
-        glfwSwapBuffers(window); // ??
+        glfwSwapBuffers(window.window); // ??
     }
     // Cleans up all the GLFW stuff
     glfwTerminate();
