@@ -5,10 +5,14 @@
 
 class Triangle
 {
+	
 	Mesh* mesh;
 	Material* material;
 
 public:
+	float red;
+	float green;
+	float blue;
 	Triangle(Material* _material, Mesh* _mesh) {
 		mesh = _mesh;
 		material = _material;
@@ -16,6 +20,10 @@ public:
 
 	void render() {
 		material->use();
+
+		int tintLocation = glGetUniformLocation(material->shaderProgram, "tintColor");
+		glUniform4f(tintLocation, red, green, blue, 1);
+
 		mesh->render();
 	}
 };
