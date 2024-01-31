@@ -62,5 +62,6 @@
     <None Include="FragmentShader.glsl" />
     <None Include="upSideDownShader.glsl" />
     <None Include="offSetShader.glsl" />
+    <None Include="textureFragmentShader.glsl" />
   </ItemGroup>
 </Project>

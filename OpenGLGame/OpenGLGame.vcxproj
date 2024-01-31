@@ -231,6 +231,7 @@
   <ItemGroup>
     <None Include="FragmentShader.glsl" />
     <None Include="offSetShader.glsl" />
+    <None Include="textureFragmentShader.glsl" />
     <None Include="upSideDownShader.glsl" />
     <None Include="vertexShader.glsl" />
   </ItemGroup>
