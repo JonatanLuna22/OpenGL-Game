@@ -59,11 +59,12 @@ int main() {
 
 	Mesh mesh2{ vertices2, size(vertices2) };
 
-	Shader vertexShader{"vertexShader.glsl", GL_VERTEX_SHADER};
+	//Shader vertexShader{"vertexShader.glsl", GL_VERTEX_SHADER};
+	Shader vertexShader{ "offSetShader.glsl", GL_VERTEX_SHADER };
+	//Shader vertexShader{ "upSideDownShader.glsl", GL_VERTEX_SHADER };
 	
-	Shader fragmentShader{
-		"FragmentShader.glsl", GL_FRAGMENT_SHADER
-	};
+	Shader fragmentShader{ "FragmentShader.glsl", GL_FRAGMENT_SHADER};
+	
 
 	// -------- Create Orange Shader Program (Render Pipeline) ---------
 	Material material{vertexShader, fragmentShader};
@@ -72,10 +73,18 @@ int main() {
 	a.red = 0.22;
 	a.green = 55;
 	a.blue = 0.0;
+
+	a.offsetX = 0.5f;
+	a.offsetY = 0.5f;
+	
 	Triangle b{ &material, &mesh2 };
 	b.red = 0.22;
 	b.green = 55;
 	b.blue = 0.0;
+
+	b.offsetX = 0.5f;
+	b.offsetY = 0.5f;
+
 
 	// While the User doesn't want to Quit (X Button, Alt+F4)
 	while (!window.shouldClose()) // window -> window.window

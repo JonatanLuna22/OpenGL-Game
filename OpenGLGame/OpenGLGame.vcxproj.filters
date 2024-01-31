@@ -36,6 +36,9 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="stb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -57,5 +60,7 @@
   <ItemGroup>
     <None Include="vertexShader.glsl" />
     <None Include="FragmentShader.glsl" />
+    <None Include="upSideDownShader.glsl" />
+    <None Include="offSetShader.glsl" />
   </ItemGroup>
 </Project>
