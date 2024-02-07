@@ -8,7 +8,7 @@
 #include "Material.h"
 #include "Triangle.h"
 #include "stb_image.h"
-
+#include "texture.h"
 
 using namespace std;
 
@@ -18,16 +18,8 @@ int main() {
 
 	Window window{ 800,600 };
 
-	int width, height, nrChannels;
-	unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
-
-	unsigned int textureId;
-	glGenTextures(1, &textureId);
-	glBindTexture(GL_TEXTURE_2D, textureId);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-	glGenerateMipmap(GL_TEXTURE_2D);
-	stbi_image_free(data);
-	
+	Texture container{ "container.jpg", GL_TEXTURE0 };
+	Texture wall{ "wall.jpg", GL_TEXTURE1 };
 
 	Vertex vertices[]{
 		//Up
@@ -82,41 +74,45 @@ int main() {
 				Vertex{Vector3{-0.5f, -0.5f, 0.0f},   Color::blue,   Vector2{0.0f, 0.0f}},   // bottom left
 				Vertex{Vector3{ 0.5f,  0.5f, 0.0f},   Color::red,   Vector2{1.0f, 1.0f}}   // top right
 
-
 	};
 
 	Mesh mesh3{ vertices3, size(vertices3) };
 
 
-	Shader vertexShader{"vertexShader.glsl", GL_VERTEX_SHADER};
-	//Shader vertexShader{ "offSetShader.glsl", GL_VERTEX_SHADER };
+	//Shader vertexShader{"vertexShader.glsl", GL_VERTEX_SHADER};
+	Shader vertexShader{ "offSetShader.glsl", GL_VERTEX_SHADER };
 	//Shader vertexShader{ "upSideDownShader.glsl", GL_VERTEX_SHADER };
 	
 	Shader fragmentShader{ "FragmentShader.glsl", GL_FRAGMENT_SHADER};
 	Shader textureFragmentShader{ "textureFragmentShader.glsl", GL_FRAGMENT_SHADER };
-
+	Shader blendTextureFragmentShader{ "blendTextureFragmentShader.glsl", GL_FRAGMENT_SHADER }; 
 
 	// -------- Create Orange Shader Program (Render Pipeline) ---------
 	Material material{vertexShader, fragmentShader};
-	Material textureMaterial{ vertexShader, textureFragmentShader };
+	//Material textureMaterial{ vertexShader, textureFragmentShader };
+	Material textureMaterial1{ vertexShader, textureFragmentShader }; //Trying
 
 	Triangle a{ &material, &mesh1 };
 	a.red = 0.22;
-	a.green = 55;
-	a.blue = 0.0;
+	a.green = 0.5;
+	a.blue = 0.5;
 
 	a.offsetX = 0.5f;
 	a.offsetY = 0.5f;
 	
 	Triangle b{ &material, &mesh2 };
-	b.red = 0.22;
-	b.green = 55;
-	b.blue = 0.0;
+	b.red = 0.43;
+	b.green = 0.10;
+	b.blue = 0.15;
 
 	b.offsetX = 0.5f;
 	b.offsetY = 0.5f;
 
-	Triangle c{ &textureMaterial, &mesh3 };
+	Triangle c{ &textureMaterial1, &mesh3, &container};
+	c.offsetX = -0.5f;
+
+	Triangle d{ &textureMaterial1, &mesh3, &wall };
+	d.offsetX = 0.5f;
 
 
 	// While the User doesn't want to Quit (X Button, Alt+F4)
@@ -129,6 +125,7 @@ int main() {
 		a.render();
 		b.render();
 		c.render();
+		d.render();
 
 		window.present();
 	}

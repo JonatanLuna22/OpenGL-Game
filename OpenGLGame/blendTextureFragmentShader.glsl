@@ -3,6 +3,7 @@ out vec4 FragColor;
 
 uniform vec4 tintColor;
 uniform sampler2D diffuseTexture;
+uniform sampler2D blendTexture;
 
 
 in vec4 vertexColor;
@@ -10,6 +11,6 @@ in vec2 texCoord;
 
 void main()
 {
-	//FragColor = texture(diffuseTexture, texCoord);
-	FragColor = vertexColor * texture(diffuseTexture, texCoord) * 2;
+	FragColor = mix(texture(diffuseTexture, texCoord), 
+				texture(blendTexture, texCoord), 0.5);
 }

@@ -4,5 +4,6 @@ uniform vec4 tintColor;
 in vec4 vertexColor;
 void main()
 {
-	FragColor = vertexColor;
+	//FragColor = vertexColor;
+	FragColor = tintColor;
 }

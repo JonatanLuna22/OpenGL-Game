@@ -1,8 +1,8 @@
 #pragma once
 
-#include <iostream>
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+#include <iostream> // 
+#include "glad/glad.h" // Glad links GL functions with the specific drivers needed that are the computer. 
+#include "GLFW/glfw3.h" // This is related with the window. It makes the program works with the different OS.
 
 using namespace std;
 
@@ -85,7 +85,7 @@ public:
 	}
 
 	void clear() {
-		glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
+		glClearColor(0.0f, 0.25f, 0.35f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 };

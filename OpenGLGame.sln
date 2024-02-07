@@ -5,6 +5,10 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGLGame", "OpenGLGame\OpenGLGame.vcxproj", "{26F749BF-2971-4DB9-B370-6805651C24EB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Maths", "Maths\Maths.vcxproj", "{0237B8B2-066A-429D-A92D-F9221380EC6C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Maths.test", "Maths.test\Maths.test.vcxproj", "{432C1D28-1BE2-400E-BA60-8E76AE6511FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +25,22 @@ Global
 		{26F749BF-2971-4DB9-B370-6805651C24EB}.Release|x64.Build.0 = Release|x64
 		{26F749BF-2971-4DB9-B370-6805651C24EB}.Release|x86.ActiveCfg = Release|Win32
 		{26F749BF-2971-4DB9-B370-6805651C24EB}.Release|x86.Build.0 = Release|Win32
+		{0237B8B2-066A-429D-A92D-F9221380EC6C}.Debug|x64.ActiveCfg = Debug|x64
+		{0237B8B2-066A-429D-A92D-F9221380EC6C}.Debug|x64.Build.0 = Debug|x64
+		{0237B8B2-066A-429D-A92D-F9221380EC6C}.Debug|x86.ActiveCfg = Debug|Win32
+		{0237B8B2-066A-429D-A92D-F9221380EC6C}.Debug|x86.Build.0 = Debug|Win32
+		{0237B8B2-066A-429D-A92D-F9221380EC6C}.Release|x64.ActiveCfg = Release|x64
+		{0237B8B2-066A-429D-A92D-F9221380EC6C}.Release|x64.Build.0 = Release|x64
+		{0237B8B2-066A-429D-A92D-F9221380EC6C}.Release|x86.ActiveCfg = Release|Win32
+		{0237B8B2-066A-429D-A92D-F9221380EC6C}.Release|x86.Build.0 = Release|Win32
+		{432C1D28-1BE2-400E-BA60-8E76AE6511FF}.Debug|x64.ActiveCfg = Debug|x64
+		{432C1D28-1BE2-400E-BA60-8E76AE6511FF}.Debug|x64.Build.0 = Debug|x64
+		{432C1D28-1BE2-400E-BA60-8E76AE6511FF}.Debug|x86.ActiveCfg = Debug|Win32
+		{432C1D28-1BE2-400E-BA60-8E76AE6511FF}.Debug|x86.Build.0 = Debug|Win32
+		{432C1D28-1BE2-400E-BA60-8E76AE6511FF}.Release|x64.ActiveCfg = Release|x64
+		{432C1D28-1BE2-400E-BA60-8E76AE6511FF}.Release|x64.Build.0 = Release|x64
+		{432C1D28-1BE2-400E-BA60-8E76AE6511FF}.Release|x86.ActiveCfg = Release|Win32
+		{432C1D28-1BE2-400E-BA60-8E76AE6511FF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
