@@ -80,7 +80,7 @@ int main() {
 
 
 	//Shader vertexShader{"vertexShader.glsl", GL_VERTEX_SHADER};
-	Shader vertexShader{ "offSetShader.glsl", GL_VERTEX_SHADER };
+	Shader vertexShader{ "vertexShader.glsl", GL_VERTEX_SHADER };
 	//Shader vertexShader{ "upSideDownShader.glsl", GL_VERTEX_SHADER };
 	
 	Shader fragmentShader{ "FragmentShader.glsl", GL_FRAGMENT_SHADER};
@@ -97,30 +97,35 @@ int main() {
 	a.green = 0.5;
 	a.blue = 0.5;
 
-	a.offsetX = 0.5f;
-	a.offsetY = 0.5f;
+	//a.offsetX = 0.5f;
+	//a.offsetY = 0.5f;
 	
 	Triangle b{ &material, &mesh2 };
 	b.red = 0.43;
 	b.green = 0.10;
 	b.blue = 0.15;
 
-	b.offsetX = 0.5f;
-	b.offsetY = 0.5f;
+	//b.offsetX = 0.5f;
+	//b.offsetY = 0.5f;
 
 	Triangle c{ &textureMaterial1, &mesh3, &container};
-	c.offsetX = -0.5f;
+	//c.offsetX = -0.5f;
+	c.position = Vector3(0.25, 0, 0);
 
 	Triangle d{ &textureMaterial1, &mesh3, &wall };
-	d.offsetX = 0.5f;
+	//d.offsetX = 0.5f;
+	c.position = Vector3(0.5, 0, 0);
 
 
 	// While the User doesn't want to Quit (X Button, Alt+F4)
 	while (!window.shouldClose()) // window -> window.window
 	{
-		window.processInput();
+		d.rotation.y = glfwGetTime();
+		c.rotation.z = glfwGetTime();
 
-		window.clear();
+		window.processInput();
+		
+			window.clear();
 
 		a.render();
 		b.render();

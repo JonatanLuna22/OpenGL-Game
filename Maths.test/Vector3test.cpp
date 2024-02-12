@@ -54,19 +54,24 @@ TEST(Vector3_Dividing, Divide_Vector3_By_Scalar) {
 
 TEST(Vector3_Magnitud, Calculate_Magnitud) {
 	Vector3 result = Vector3(3, 4, 5);
-	EXPECT_EQ(result, 7.0710678118654);
-	//EXPECT_FLOAT_EQ(Vector3
+	EXPECT_NEAR(result.magnitude(), 7.0710678118654, 00001);
 }
 
 TEST(Vector3_Normalizing, Normalize_Vector3) {
-	Vector3 result = Vector3(3 / 7.071, 4 / 7.071, 5 / 7.071);
-	EXPECT_EQ(result, Vector3(0.424, 0.566, 0.707));
+	Vector3 result = Vector3(3.0 / 7.071, 4.0 / 7.071, 5.0 / 7.071);
+	EXPECT_NEAR(result.x, 0.424, 0.001);
+	EXPECT_NEAR(result.y, 0.566, 0.001);
+	EXPECT_NEAR(result.z, 0.707, 0.001);
 }
 
 TEST(Vector_Cross_Product, Calculate_Product_Of_Two_Vectors3) {
-	Vector3 result = Vector3(3, 4, 5), Vector3(1, 2, 3);
-	//EXPECT_EQ(result, Vector3(4 * 3 - 5 * 2, 5 * 1 - 3 * 3, 3 * 2 - 4 * 1);
-	EXPECT_EQ(result, Vector3::Cross Vector3(3, 4, 5), Vector3(1, 2, 3), Vector3(2, -4, 2));
+	Vector3 result = Vector3::Cross(Vector3(3, 4, 5), Vector3(1, 2, 3));
+	EXPECT_EQ(result, Vector3(2, -4, 2));
+}
+
+TEST(Vector_Distance_Formula, Calculate_Distance_Between_Two_Points) {
+	float result = Vector3::Distance(Vector3(3, 4, 5), Vector3(1, 2, 3));
+	EXPECT_NEAR(result, 3.46410161514, 0.00001);
 }
 
 // ASSERT_EQ(Vector3::Dot(Vector3(1, 2, 3), Vector3(4, 5, 6)), ? ? ? );

@@ -3,6 +3,7 @@
 class Vector3
 {
 public:
+
     float x, y, z;
     Vector3(float x, float y, float z) : x{ x }, y{ y }, z{ z } { }
 
@@ -39,8 +40,22 @@ public:
     float magnitude() const {
         return sqrt(x * x + y * y + z * z);
     }
+   
+    //Vector3 Vector3::normalized() const {
+        //float mag = magnitude();
+        //return Vector3(x/mag, y / mag, z / mag);
+    //}
 
-    Vector3 operator/(float scalar) const {
-        return Vector3(x / scalar, y / scalar, z / scalar);
+    static Vector3 Cross(Vector3& a, Vector3& b) {
+        return Vector3(a.y * b.z - a.z * b.y,
+                       a.z * b.x - a.x * b.z,
+                       a.x * b.y - a.y * b.x);
     }
+
+    static float Distance(const Vector3& a, const Vector3& b) {
+        return sqrt((a.x - b.x) * (a.x - b.x) +
+            (a.y - b.y) * (a.y - b.y) +
+            (a.z - b.z) * (a.z - b.z));
+    }
+    
 };

@@ -2,10 +2,7 @@
 
 #include "glad/glad.h"
 #include <cstddef>
-
-struct Vector3 {
-	float x, y, z;
-};
+#include "../Maths/Vector3.h"
 
 struct Vector2 {
 	float x, y;
