@@ -3,6 +3,7 @@
 #include "glad/glad.h"
 #include <cstddef>
 #include "../Maths/Vector3.h"
+#include <algorithm>
 
 struct Vector2 {
 	float x, y;
@@ -21,23 +22,38 @@ struct Color {
 struct Vertex {
 	Vector3 pos; //position
 	Color col{ 1,1,1,1 };
-	Vector2 uv;
+	Vector2 uv; //texture coordinates
 };
 
 class Mesh
+
 {
 	unsigned int VAO;
 	size_t vertexCount;
+
+const static Vertex quadVertices[6];
+
+static Mesh* quadMesh;
+
 public:
 
-	void render() {
+	
+	static const Mesh* createQuad() {
+		if (quadMesh == nullptr) {
+			quadMesh = new Mesh{ Mesh::quadVertices, std::size(Mesh::quadVertices) };
+		}
+		return quadMesh; 
+	}
+	
+
+	void render() const {
 		glBindVertexArray(VAO);
-		// This is to see the lines but not the voumes.
+		// This is to see the lines but not the volumes.
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		glDrawArrays(GL_TRIANGLES, 0, vertexCount);
 	}
 
-	Mesh(Vertex* vertices, size_t count) {
+	Mesh(const Vertex* vertices, size_t count) {
 		vertexCount = count;
 		// ----- Create Vertex Array Object, which makes changing between VBOs easier -----
 		glGenVertexArrays(1, &VAO);

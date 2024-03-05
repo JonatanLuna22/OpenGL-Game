@@ -41,10 +41,10 @@ public:
         return sqrt(x * x + y * y + z * z);
     }
    
-    //Vector3 Vector3::normalized() const {
-        //float mag = magnitude();
-        //return Vector3(x/mag, y / mag, z / mag);
-    //}
+    inline Vector3 Normalized() const {
+        float mag = magnitude();
+        return Vector3(x/mag, y / mag, z / mag);
+    }
 
     static Vector3 Cross(Vector3& a, Vector3& b) {
         return Vector3(a.y * b.z - a.z * b.y,
@@ -57,5 +57,11 @@ public:
             (a.y - b.y) * (a.y - b.y) +
             (a.z - b.z) * (a.z - b.z));
     }
+
+    static float Dot(const Vector3& a, const Vector3& b) {
+        return a.x * b.x + a.y * b.y + a.z * b.z;
+    }
+
+ 
     
 };
