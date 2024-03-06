@@ -3,7 +3,7 @@
 #include <iostream>
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
-#include "GameObject.h" // Incluye la clase GameObject
+#include "GameObject.h" 
 #include <vector>
 
 using namespace std;
@@ -50,7 +50,8 @@ public:
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-        window = glfwCreateWindow(800, 600, "LearnOpenGL", nullptr, nullptr);
+        // Se inicializa el contexto de OpenGL y se crea la ventana GLFW
+        window = glfwCreateWindow(width, height, "LearnOpenGL", nullptr, nullptr);
 
         if (window == nullptr)
         {
@@ -66,18 +67,21 @@ public:
             glfwTerminate();
             return;
         }
-        glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-        glfwSetCursorPosCallback(window, cursor_position_callback); // Registra la función de devolución de llamada para el movimiento del cursor
-        glfwSetWindowUserPointer(window, this); // Establece el puntero de usuario de la ventana a la instancia actual
 
-        glfwGetFramebufferSize(window, &width, &height);
-        glViewport(0, 0, width, height);
+        glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+        glfwSetCursorPosCallback(window, cursor_position_callback);
+        glfwSetWindowUserPointer(window, this);
+
+        // Se establece el viewport después de que se haya creado el contexto de OpenGL
+        int framebufferWidth, framebufferHeight;
+        glfwGetFramebufferSize(window, &framebufferWidth, &framebufferHeight);
+        glViewport(0, 0, framebufferWidth, framebufferHeight);
 
         success = true;
     }
 
     bool shouldClose() {
-        return glfwWindowShouldClose(this->window);
+        return glfwWindowShouldClose(window);
     }
 
     void present() {
@@ -96,16 +100,16 @@ public:
         glClear(GL_COLOR_BUFFER_BIT);
     }
 
-    // Función para manejar el movimiento del cursor
-    void handleCursorMovement(double xpos, double ypos, int windowWidth, int windowHeight)
+    void handleCursorMovement(double xpos, double ypos)
     {
         for (auto& obj : gameObjects) {
-            obj.updateColorOnMouseHover(xpos, ypos);
+            obj.updateColorOnMouseHover(static_cast<int>(xpos), static_cast<int>(ypos), 800, 600);
         }
     }
 
-    
-
+    GLFWwindow* getGLFWwindow() const {
+        return window;
+    }
 };
 
 

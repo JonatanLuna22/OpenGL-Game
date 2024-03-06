@@ -4,7 +4,7 @@
 #include "Material.h"
 #include "Texture.h"
 #include "../Maths/Matrix4x4.h"
-//#include "Vector3.h" // Incluimos la clase Vector3 para utilizar sus métodos
+#include "../Maths/Vector3.h" // Incluimos la clase Vector3 para utilizar sus métodos
 
 class GameObject
 {
@@ -25,6 +25,11 @@ public:
 		material = _material;
 		texture = _texture;
 		position = Vector3(0, 0, 0);
+
+		red = 0.22f;
+		green = 0.5f;
+		blue = 0.5f;
+
 	}
 
 	void render() const {
@@ -80,8 +85,8 @@ public:
 
 	void updateColorOnMouseHover(double mouseX, double mouseY, int windowWidth, int windowHeight) {
 
-		double normalizedX = (mouseX / windowWidth) * 2 - 1;
-		double normalizedY = 1 - (mouseY / windowHeight) * 2;
+		double normalizedX = (mouseX / static_cast<double>(windowWidth)) * 2 - 1;
+		double normalizedY = 1 - (mouseY / static_cast<double>(windowHeight)) * 2;
 
 		// Triángulo superior
 		if (isPointInsideTriangle(Vector3(mouseX, mouseY, 0.0f), Vector3(0.0f, 0.5f, 0.0f), Vector3(0.25f, 0.0f, 0.0f), Vector3(-0.25f, 0.0f, 0.0f))) {
